@@ -1,7 +1,15 @@
 # Ask Jennie Python Package
-The package targets to automate development task using single line command, The package include task with UI gallery to automate development of small to medium project. The package is a part of ASK Jennie Complete Product.
+Jennie would be a software tool that will store automated task as snap-shopts on Jennie Server.
+
+Currently jennie is equipped, with automated task related to Angular and Django, Also we have added a way of uploading Angular component library and made it reuse-able to public using the same package
+
+`Angular component library`: Angular Library that can be used inside any angular project as a component, these component can be a small module or a complete page as well.
+
+*A list of UI galleries can be found at [gallery.angular.ask-jennie.com](https://gallery.angular.ask-jennie.com)*
 
 ## Setup
+
+**Setup is required to use jennie.**
 
 ```shell script
 jennie setup useremail@something.com 
@@ -12,22 +20,26 @@ Mail us on : saurabh@ask-jennie.com
 
 Registered user can simply do setup and start using Jennie.
 
-## Angular Based Automations
-- ### Installing Bootstrap in Angular Project
-```shell script
-jennie angular install bootstrap
-```
+- ## Angular Based Automations
 
-*Adds Bootsrap and Jquery to angular project*
+    - ### Installing Bootstrap in Angular Project
+        ```shell script
+        jennie angular install bootstrap
+        ```
+        
+        *Adds Bootsrap and Jquery to angular project*   
 
-## Adding Angular Based UI Component
-```shell
-jennie angular add ui-lib-name
-```
-replace `ui-lib-name` with desire gallery, a list of UI galleries can be found at [gallery.angular.ask-jennie.com](https://gallery.angular.ask-jennie.com)
+    - ### Adding Angular Based UI Component
 
+        ```shell
+        jennie angular add uilibname
+        ```
+        
+        replace `uilibname` with desire gallery        
+        
+        **the command will create a component with the name of library, add it to project, later the library can be used using `<app-uilibname></app-uilibname>` anywhere inside projects**
 
-## Uploading Angular Based UI Component
+- ### Uploading Angular Based UI Component
 Steps to upload a UI component to Jennie.
 
 - Create a json config file inside the component folder, the json config file will contain
