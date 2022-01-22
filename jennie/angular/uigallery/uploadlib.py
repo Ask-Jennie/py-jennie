@@ -1,11 +1,10 @@
 import requests
-from jennie.helper import *
 from jennie.angular.helper import *
 
 UI_LIB_API = "https://api.ask-jennie.com/v1/upload_lib/"
 IMAGE_UPLOAD_API = "https://api.ask-jennie.com/v1/image_upload/"
 
-class Upload():
+class UploadLib():
     def __init__(self, directory=None):
         if directory == None:
             self.curr_dir = os.getcwd()
@@ -34,7 +33,7 @@ class Upload():
         return True
 
     def verify_json_conf(self, jsonconf, app_name):
-        required_keys = ["type", "name", "title", "description", "image_file"]
+        required_keys = ["type", "name", "title", "description", "image_file", "tag"]
         for key in required_keys:
             if key not in jsonconf:
                 raise ValueError("Missing key {} in json configration".format(key))
@@ -63,15 +62,26 @@ class Upload():
         }
         :return:
         """
+
         files = {'media': open(data["jennie_conf"]["image_file"], 'rb')}
+        data["tag"] = data["jennie_conf"]["tag"]
 
         image_res = requests.post(IMAGE_UPLOAD_API, headers={"token": self.token}, files=files)
         del data["jennie_conf"]["image_file"]
+        del data["jennie_conf"]["tag"]
         data["jennie_conf"]["image"] = image_res.json()["payload"]
         api_res = requests.post(UI_LIB_API, headers={"token": self.token}, json=data)
         return api_res
 
+    @property
     def upload_ui_component(self):
+        """
+        - Get module info
+        - Get all scripts
+        - if Verify JSON Config
+            - Check if
+        :return:
+        """
         lib_info = get_angular_module_info(self.curr_dir)
         lib_info["scripts"] = self.get_extra_scripts(lib_info)
         lib_info["stack"] = "angular"
@@ -84,8 +94,5 @@ class Upload():
             raise ValueError("Unhandled Error")
         raise ValueError("Unhandled Error")
 
-    def download_ui_component(self):
-        return True
-
 if __name__ == '__main__':
-    Upload("/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/app/navbarlight").upload_ui_component()
+    Upload("/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/app/navbarlight").upload_ui_component

@@ -1,8 +1,23 @@
 import json
+import os, requests
 from os import listdir
 from os.path import isfile, join
 from jennie.responses import *
 from jennie.setup import get_user_access_token
+
+def check_if_angular_project(directory):
+    search_files = [
+        "angular.json", "karma.conf.js",
+        "package.json"
+    ]
+    print ("Checking Project Type Directory for ", directory)
+    is_angular = True
+    for file in search_files:
+        if not os.path.isfile(directory + file):
+            is_angular = False
+
+    return is_angular
+
 
 def check_app_name(app_name, file):
     if (app_name == None):
@@ -58,6 +73,15 @@ def get_angular_module_info(directory):
 
     response["app_name"] = app_name
     return response
+
+def create_angular_module_info(jsonInfo):
+    jsonInfo["html_file_data"] = requests.get(jsonInfo["html_file_path"]).text
+    jsonInfo["css_file_data"] = requests.get(jsonInfo["css_file_path"]).text
+    jsonInfo["ts_file_data"] = requests.get(jsonInfo["ts_file_path"]).text
+    if "scripts" in jsonInfo["jennie_conf"]:
+        for script in jsonInfo["scripts"]:
+            jsonInfo["scripts"][script] = requests.get(jsonInfo["scripts"][script]).text
+    return jsonInfo
 
 if __name__ == '__main__':
     status = get_angular_module_info("/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/app/home")
