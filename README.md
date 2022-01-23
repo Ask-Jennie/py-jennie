@@ -49,7 +49,8 @@ Steps to upload a UI component to Jennie.
     "name": "register",
     "title": "Simple Bootstrap Registration Page",
     "description": "Some imformation about the library",
-    "image_file": "/Users/saurabhpandey/Downloads/navbar-light.png"
+    "image_file": "/Users/saurabhpandey/Downloads/navbar-light.png",
+    "tag": "Navbar"
 }
 ```
 `type`: `bootstrap-ui-gallery` / `ui-gallery`

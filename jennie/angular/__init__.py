@@ -24,7 +24,7 @@ def install_library(app_name):
     """
     status = DownloadLib(app_name=app_name).download_ui_component
     if status:
-        print("UI Component Added Successfully Successfully")
+        print("UI Component Added Successfully\nComponent Tag: <app-{0}>/<app-{0}>".format(app_name))
 
 def install_bootstrap():
     """

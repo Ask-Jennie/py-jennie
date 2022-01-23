@@ -11,7 +11,6 @@ class UploadLib():
         else:
             self.curr_dir = directory
 
-        # self.token = "7f2d26281291b158ffe6a454fbd744d8cba422fa"
         self.token = get_user_access_token()["payload"]["token"]
         if self.token == None:
             raise ValueError("User not logged in, require login to upload library")
