@@ -46,7 +46,7 @@ jennie angular install angular-matarial
         
 *One need to be present inside angular project to perform the task.*
 
-#####-  Adding Dashboard Theme to a project
+-#####  Adding Dashboard Theme to a project
 
 Dashboard theme : The flow include signup page, login page, dashboard module and inside dashboard module home and other pages.
 
