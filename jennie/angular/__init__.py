@@ -3,6 +3,8 @@ from jennie.angular.uigallery.uploadlib import UploadLib
 from jennie.angular.uigallery.downloadlib import DownloadLib
 from jennie.angular.helper import check_if_angular_project
 from jennie.responses import UNKNOWN_PROJECT_TYPE
+from jennie.api_calls import APICalls
+from jennie.setup import get_user_access_token, get_dummy_user_access_token
 
 def upload_library():
     """
@@ -50,3 +52,26 @@ def install_bootstrap():
         open(current_dir + "src/index.html", "w").write(dataset)
     else:
         print (UNKNOWN_PROJECT_TYPE)
+
+
+def create_login_signup_project(config):
+    # token = get_user_access_token()["payload"]["token"]
+    token = get_dummy_user_access_token()["payload"]["token"]
+    headers = { "token": token }
+    res = APICalls().post(url="https://api.ask-jennie.com/v1/app/create-angular-login-signup-app/", headers=headers, body=config)
+    print (res)
+
+
+def create_crm_project(config):
+    # token = get_user_access_token()["payload"]["token"]
+    token = get_dummy_user_access_token()["payload"]["token"]
+    headers = { "token": token }
+    # res = APICalls().post(url="https://api.ask-jennie.com/v1/app/create-angular-login-signup-app/", headers=headers, body=config)
+    response = {
+        "app_code": "{'project_link': 'https://projects.ask-jennie.com/1643231549-5272305.zip'",
+        "pre_commands": ["ng g new {}".format(config["project_name"]), "cd {}".format(config["project_name"])],
+        "post_commands": ["npm i"]
+    }
+    print ("Angular Login Project Ready To Use.")
+    print (response)
+

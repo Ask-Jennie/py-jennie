@@ -5,6 +5,9 @@ from jennie.api_calls import APICalls
 LOGIN_API = "https://api.ask-jennie.com/v1/login/"
 TOKEN_PATH = str(sys.executable).split("/bin/python")[0] + "/lib/python3.7/site-packages/jennie/" + "token.json"
 
+def get_dummy_user_access_token():
+    return {"status":True,"payload":{"email":"saurabh@trillbit.com","fullname":"Saurabh Pandey","city":"Not Avalible","bio":"Senior Software Engineer","is_active":1,"token":"8ee7f0795bd3e9a88b44066926d82a90a4589415"},"message":"Login Api view"}
+
 def get_user_access_token():
     if not os.path.isfile(TOKEN_PATH):
         return None

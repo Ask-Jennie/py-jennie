@@ -5,7 +5,7 @@ Currently jennie is equipped, with automated task related to Angular and Django,
 
 `Angular component library`: Angular Library that can be used inside any angular project as a component, these component can be a small module or a complete page as well.
 
-*A list of UI galleries can be found at [gallery.angular.ask-jennie.com](https://gallery.angular.ask-jennie.com)*
+*A list of UI galleries can be found at [angular.uigallery.ask-jennie.com](https://angular.uigallery.ask-jennie.com/)*
 
 ## Setup
 
@@ -46,10 +46,15 @@ Steps to upload a UI component to Jennie.
 ```json
 {
     "type": "bootstrap-ui-gallery",
-    "name": "register",
+    "name": "navbardark",
     "title": "Simple Bootstrap Registration Page",
-    "description": "Some imformation about the library",
-    "image_file": "/Users/saurabhpandey/Downloads/navbar-light.png",
+    "description": "Some information about the library",
+    "parameter": [{
+        "parameter_name": "Name of parameter",
+        "parameter_type": "string/array",
+        "parameter_description": "Tell us about the parameter"
+    }],
+    "image_file": "/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/assets/navbar-dark.png",
     "tag": "Navbar"
 }
 ```
