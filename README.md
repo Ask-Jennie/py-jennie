@@ -73,7 +73,7 @@ Steps to upload a UI component to Jennie.
 
 - execute
 ```shell
-jennie angular upload bootstrap-ui-lib
+jennie angular upload ui-lib
 ```
 
 
