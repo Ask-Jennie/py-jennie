@@ -26,7 +26,7 @@ jennie angular [TASK_TYPE] [TASK_NAME]
 
 The list of features available are
 
-#####-  Installing Bootstrap in Angular Project
+#### -  Installing Bootstrap in Angular Project
 
 Adds Bootstrap and Jquery to angular project. 
 
@@ -36,7 +36,7 @@ jennie angular install bootstrap
         
 *One need to be present inside angular project to perform the task.*
 
-##### -  Installing Angular Material in Angular Project
+#### -  Installing Angular Material in Angular Project
 
 Adds Angular material To a project. 
 
@@ -46,7 +46,7 @@ jennie angular install angular-matarial
         
 *One need to be present inside angular project to perform the task.*
 
-##### - Adding Dashboard Theme to a project
+#### - Adding Dashboard Theme to a project
 
 Dashboard theme : The flow include signup page, login page, dashboard module and inside dashboard module home and other pages.
 
@@ -57,7 +57,7 @@ Also the flow includes AuthGaurd for managing authenticated pages.
 jennie angular add dashboard-theme
 ```
 
-##### -  Adding User Session Flow
+#### -  Adding User Session Flow
 
 Adds User session with auth manager, which can be used to hide unauthenticated user from accessing any page
 Adds AuthGaurd Services, UserSession Services and dummy login api to a project.
@@ -68,7 +68,7 @@ jennie angular add user-session
  
 *One need to be present inside angular project to perform the task.*
    
-##### -  Adding Firebase
+#### -  Adding Firebase
 
 Firebase is a great tool for automating backend services though due to multiple steps involved it becomes hard to integrate firebase in Angular Project. 
 
@@ -80,7 +80,7 @@ jennie angular add firebase
  
 *One need to be present inside angular project to perform the task.*
 
-##### -  Add Table View For API
+#### -  Add Table View For API
 
 Add a page with table that represent value from API, also there are option to add, modify and delete value.
 
@@ -90,9 +90,9 @@ jennie angular add table-view path/to/table.json
  
 *One need to be present inside angular project to perform the task.*
       
-#### Django ( Backend )
+### Django ( Backend )
 
-##### -  Setup Project
+#### -  Setup Project
 
 The command and configure application to Django Project with proper directory structure and with custom libraries.
 
@@ -107,7 +107,7 @@ Custom libraries include
 jennie django setup project
 ```
 
-##### -  Create User API
+#### -  Create User API
 
 The task automates creation of 
 
@@ -119,7 +119,7 @@ The task automates creation of
 jennie django add user-apis path/to/user-table.json
 ```
 
-##### -  Create Simple API
+#### -  Create Simple API
 
 The task automates create Api for a table provided. The api contain all 4 methods. GET, POST, PUT, DELETE.
 
@@ -135,7 +135,7 @@ jennie django add simple-apis path/to/user-table.json
 
 *A list of UI galleries can be found at [angular.uigallery.ask-jennie.com](https://angular.uigallery.ask-jennie.com/)*
 
-##### - Adding Angular Based UI Component
+#### - Adding Angular Based UI Component
 
 ```shell
 jennie angular add uilibname
@@ -145,7 +145,7 @@ replace `uilibname` with desire gallery
         
 **the command will create a component with the name of library, add it to project, later the library can be used using `<app-uilibname></app-uilibname>` anywhere inside projects**
 
-#####-  Uploading Angular Based UI Component
+#### -  Uploading Angular Based UI Component
 Steps to upload a UI component to Jennie.
 
 - Create a json config file inside the component folder, the json config file will contain
@@ -182,4 +182,4 @@ Steps to upload a UI component to Jennie.
 jennie angular upload ui-lib
 ```
 
-#### - Flutter ( Mobile Application, Coming Soon.... ) 
+### Flutter ( Mobile Application, Coming Soon.... ) 
