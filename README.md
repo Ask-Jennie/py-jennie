@@ -159,6 +159,23 @@ image_file | File path for image, required. Make you component live take a scree
 
 So the json file would look like.
 
+**json.conf.json**
+```json
+{
+    "type": "bootstrap-ui-gallery",
+    "name": "navbardark",
+    "title": "Simple Bootstrap Registration Page",
+    "description": "Some information about the library",
+    "parameter": [{
+        "parameter_name": "Name of parameter",
+        "parameter_type": "string/array",
+        "parameter_description": "Tell us about the parameter"
+    }],
+    "image_file": "/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/assets/navbar-dark.png",
+    "tag": "Navbar"
+}
+```
+
 ### -  Updating Angular Based UI Component
 
 The command will update the angular component library on ASK Jennie Server.
