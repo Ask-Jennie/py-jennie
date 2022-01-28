@@ -36,7 +36,7 @@ jennie angular install bootstrap
         
 *One need to be present inside angular project to perform the task.*
 
-#####-  Installing Angular Material in Angular Project
+##### -  Installing Angular Material in Angular Project
 
 Adds Angular material To a project. 
 
@@ -46,7 +46,7 @@ jennie angular install angular-matarial
         
 *One need to be present inside angular project to perform the task.*
 
--#####  Adding Dashboard Theme to a project
+##### - Adding Dashboard Theme to a project
 
 Dashboard theme : The flow include signup page, login page, dashboard module and inside dashboard module home and other pages.
 
@@ -57,7 +57,7 @@ Also the flow includes AuthGaurd for managing authenticated pages.
 jennie angular add dashboard-theme
 ```
 
-#####-  Adding User Session Flow
+##### -  Adding User Session Flow
 
 Adds User session with auth manager, which can be used to hide unauthenticated user from accessing any page
 Adds AuthGaurd Services, UserSession Services and dummy login api to a project.
@@ -68,7 +68,7 @@ jennie angular add user-session
  
 *One need to be present inside angular project to perform the task.*
    
-#####-  Adding Firebase
+##### -  Adding Firebase
 
 Firebase is a great tool for automating backend services though due to multiple steps involved it becomes hard to integrate firebase in Angular Project. 
 
@@ -80,7 +80,7 @@ jennie angular add firebase
  
 *One need to be present inside angular project to perform the task.*
 
-#####-  Add Table View For API
+##### -  Add Table View For API
 
 Add a page with table that represent value from API, also there are option to add, modify and delete value.
 
@@ -92,7 +92,7 @@ jennie angular add table-view path/to/table.json
       
 #### Django ( Backend )
 
-#####-  Setup Project
+##### -  Setup Project
 
 The command and configure application to Django Project with proper directory structure and with custom libraries.
 
@@ -107,7 +107,7 @@ Custom libraries include
 jennie django setup project
 ```
 
-#####-  Create User API
+##### -  Create User API
 
 The task automates creation of 
 
@@ -119,7 +119,7 @@ The task automates creation of
 jennie django add user-apis path/to/user-table.json
 ```
 
-#####-  Create Simple API
+##### -  Create Simple API
 
 The task automates create Api for a table provided. The api contain all 4 methods. GET, POST, PUT, DELETE.
 
@@ -129,7 +129,7 @@ Create Model, Serializer, Controller, and View for the API.
 jennie django add simple-apis path/to/user-table.json
 ```
 
-#### - Angular Bootstrap UI Gallery
+### Angular Bootstrap UI Gallery
 
 `Angular component library`: Angular Library that can be used inside any angular project as a component, these component can be a small module or a complete page as well.
 
