@@ -1,21 +1,6 @@
 # Jennie Python Package
 Jennie is a collection of automation on different framework. To use the one must be registered with Ask Jennie. [Register Here](https://dashboard.ask-jennie.com)
 
-##Task List
-
-Command | Related Task | Status |
---- | --- | --- |
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-`jennie setup useremail@something.com` | Make API call and start user session for software | `done`
-`jennie angular install bootstrap` | Install bootstrap package in angular project | `done`
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-`pip3 install py-jennie` | Upload Py Jennie on Pip Library Package | `pending`
-
-
 ## Install ASK Jennie
 ASK Jennie library is available on PIP for public use. to install jennie 
 ```shell script
@@ -189,6 +174,12 @@ So the json file would look like.
     "image_file": "/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/assets/navbar-dark.png",
     "tag": "Navbar"
 }
+```
+
+go inside the component and run the command.
+
+```shell
+jennie angular upload ui-lib
 ```
 
 ### -  Updating Angular Based UI Component
