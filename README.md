@@ -135,7 +135,7 @@ jennie django add simple-apis path/to/user-table.json
 
 *A list of UI galleries can be found at [angular.uigallery.ask-jennie.com](https://angular.uigallery.ask-jennie.com/)*
 
-### -  Adding Angular Based UI Component
+### -  Adding Angular Based UI Component to your project.
 
 ```shell
 jennie angular add uilibname
@@ -146,40 +146,27 @@ replace `uilibname` with desire gallery
 **the command will create a component with the name of library, add it to project, later the library can be used using `<app-uilibname></app-uilibname>` anywhere inside projects**
 
 ### -  Uploading Angular Based UI Component
-Steps to upload a UI component to Jennie.
 
-- Create a json config file inside the component folder, the json config file will contain
-```json
-{
-    "type": "bootstrap-ui-gallery",
-    "name": "navbardark",
-    "title": "Simple Bootstrap Registration Page",
-    "description": "Some information about the library",
-    "parameter": [{
-        "parameter_name": "Name of parameter",
-        "parameter_type": "string/array",
-        "parameter_description": "Tell us about the parameter"
-    }],
-    "image_file": "/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/assets/navbar-dark.png",
-    "tag": "Navbar"
-}
-```
-`type`: `bootstrap-ui-gallery` / `ui-gallery`
+**Create a json config file inside the component folder, the json config file will contain**
 
-`name`: `nameofcomponent`, make sure the name should not contain only alpha numaric characters.
+Name | Description
+--- | --- |
+type | `bootstrap-ui-gallery` / `ui-gallery`
+name | `nameofcomponent`, make sure the name should not contain only alpha numaric characters.
+title | Title for the component, the title will be displayed on ui gallery website.
+description | Short description for the component, the description will be displayed on ui gallery website.
+image_file | File path for image, required. Make you component live take a screenshot that's good for an image.
 
-`title`: Title for the component, the title will be displayed on ui gallery website.
+So the json file would look like.
 
-`description`: Short description for the component, the description will be displayed on ui gallery website.
+### -  Updating Angular Based UI Component
 
-`image_file`: File path for image, required. Make you component live take a screenshot that's good for an image.
+The command will update the angular component library on ASK Jennie Server.
 
-- Open Terminal and go project/src/app/path/to/component 
-![GoToTerminal](images/go_to_project_component.png)
-
-- execute
 ```shell
-jennie angular upload ui-lib
+jennie angular update ui-lib
 ```
+
+Make sure jennie conf file exits in project 
 
 ## Flutter ( Mobile Application, Coming Soon.... ) 
