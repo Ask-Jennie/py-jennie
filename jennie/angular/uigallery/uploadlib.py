@@ -5,7 +5,8 @@ UI_LIB_API = "https://api.ask-jennie.com/v1/upload_lib/"
 IMAGE_UPLOAD_API = "https://api.ask-jennie.com/v1/image_upload/"
 
 class UploadLib():
-    def __init__(self, directory=None):
+    def __init__(self, directory=None, update=False):
+        self.update = update
         if directory == None:
             self.curr_dir = os.getcwd()
         else:
@@ -31,6 +32,13 @@ class UploadLib():
             raise ValueError("Library name is already used, try different name")
         return True
 
+    def check_if_component_exits(self, app_name):
+        url = UI_LIB_API + "?check_library=true&name=" + app_name
+        api_check_res = requests.get(url, headers={"token": self.token})
+        if not api_check_res.json()["payload"]["available"]:
+            return True
+        raise ValueError("Library does not exits")
+
     def verify_json_conf(self, jsonconf, app_name):
         required_keys = ["type", "name", "title", "description", "image_file", "tag"]
         for key in required_keys:
@@ -44,7 +52,7 @@ class UploadLib():
             raise ValueError("App name doest matches with the name of component")
         return True
 
-    def upload_lib_to_ask_jennie(self, data):
+    def upload_lib_to_ask_jennie(self, data, update=False):
         """
         data: {
           "css_file_data": "CSS_FILE_DATA",
@@ -69,7 +77,39 @@ class UploadLib():
         del data["jennie_conf"]["image_file"]
         del data["jennie_conf"]["tag"]
         data["jennie_conf"]["image"] = image_res.json()["payload"]
-        api_res = requests.post(UI_LIB_API, headers={"token": self.token}, json=data)
+
+        if update:
+            api_res = requests.put(UI_LIB_API, headers={"token": self.token}, json=data)
+        else:
+            api_res = requests.post(UI_LIB_API, headers={"token": self.token}, json=data)
+        return api_res
+
+    def update_lib_to_ask_jennie(self, data):
+        """
+        data: {
+          "css_file_data": "CSS_FILE_DATA",
+          "html_file_data": "HTML_FILE_DATA",
+          "ts_file_data": "TS_FILE_DATA",
+          "jennie_conf": {
+            "type": "bootstrap-ui-gallery",
+            "name": "component name, will be used to install component in angular",
+            "title": "Title of library, will be displayed on UI ASK Jennie website",
+            "description": "Description about the library"
+          },
+          "app_name": "component name, will be used to install component in angular",
+          "scripts": {}
+        }
+        :return:
+        """
+
+        files = {'media': open(data["jennie_conf"]["image_file"], 'rb')}
+        data["tag"] = data["jennie_conf"]["tag"]
+
+        image_res = requests.post(IMAGE_UPLOAD_API, headers={"token": self.token}, files=files)
+        del data["jennie_conf"]["image_file"]
+        del data["jennie_conf"]["tag"]
+        data["jennie_conf"]["image"] = image_res.json()["payload"]
+        api_res = requests.put(UI_LIB_API, headers={"token": self.token}, json=data)
         return api_res
 
     @property
@@ -86,12 +126,14 @@ class UploadLib():
         lib_info["stack"] = "angular"
         if self.verify_json_conf(lib_info["jennie_conf"], lib_info["app_name"]):
             print ("Uploading Library....", json.dumps(lib_info, indent=2))
-            self.check_unique_component(app_name=lib_info["app_name"])
-            resp = self.upload_lib_to_ask_jennie(lib_info)
+
+            if self.update:
+                self.check_if_component_exits(app_name=lib_info["app_name"])
+            else:
+                self.check_unique_component(app_name=lib_info["app_name"])
+
+            resp = self.upload_lib_to_ask_jennie(lib_info, self.update)
             if (resp.status_code == 201):
                 return True
             raise ValueError("Unhandled Error")
         raise ValueError("Unhandled Error")
-
-if __name__ == '__main__':
-    Upload("/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/app/navbarlight").upload_ui_component

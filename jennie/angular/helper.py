@@ -74,7 +74,7 @@ def get_angular_module_info(directory):
     response["app_name"] = app_name
     return response
 
-def create_angular_module_info(jsonInfo):
+def get_data_for_angular_ui_module(jsonInfo):
     jsonInfo["html_file_data"] = requests.get(jsonInfo["html_file_path"]).text
     jsonInfo["css_file_data"] = requests.get(jsonInfo["css_file_path"]).text
     jsonInfo["ts_file_data"] = requests.get(jsonInfo["ts_file_path"]).text

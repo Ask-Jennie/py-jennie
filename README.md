@@ -1,195 +1,113 @@
-# Jennie Python Package
-Jennie is a collection of automation on different framework. To use the one must be registered with Ask Jennie. [Register Here](https://dashboard.ask-jennie.com)
+# Jennie
 
-## Install ASK Jennie
-ASK Jennie library is available on PIP for public use. to install jennie 
-```shell script
-pip3 install py-jennie
-```
-Once installation is completed, use below command to setup jennie for the first time.
-```shell script
-jennie setup useremail@something.com 
-```
-
-## About PY Jennie
-Jennie is a collection of automation on different software framework. These automation can be used by developers in order to increase productivity.
-
-Currently library supports automation for below frameworks  
-
-##  Angular ( Frontend )
-
-Automation related to Angular 7+ framework. The base command 
-
-```shell script
-jennie angular [TASK_TYPE] [TASK_NAME]
-```
-
-The list of features available are
-
-### -  Installing Bootstrap in Angular Project
-
-Adds Bootstrap and Jquery to angular project. 
-
-```shell script
-jennie angular install bootstrap
-```
-        
-*One need to be present inside angular project to perform the task.*
-
-### -  Installing Angular Material in Angular Project
-
-Adds Angular material To a project. 
-
-```shell script
-jennie angular install angular-matarial
-```
-        
-*One need to be present inside angular project to perform the task.*
-
-### -  Adding Dashboard Theme to a project
-
-Dashboard theme : The flow include signup page, login page, dashboard module and inside dashboard module home and other pages.
-
-Also the flow includes AuthGaurd for managing authenticated pages.
+Jennie is a high-level python automation framework. Jennie provides protocol to upload and reuse automation for different platforms.
 
 
-```shell script
-jennie angular add dashboard-theme
-```
+## Jennie 0.0.1 release notes
+expected release : 2nd week of feb 2022
 
-### -  Adding User Session Flow
-
-Adds User session with auth manager, which can be used to hide unauthenticated user from accessing any page
-Adds AuthGaurd Services, UserSession Services and dummy login api to a project.
-
-```shell script
-jennie angular add user-session
-```
+**The release/0.0.1 contains:**
  
-*One need to be present inside angular project to perform the task.*
-   
-### -  Adding Firebase
+- Working protocol for uploading / updating Angular UI module library.
+- Working protocol for reusing Angular UI module library.
+- Working protocol for uploading / updating Angular Framework Automations.
+- Working protocol for reusing Angular Framework Automations. 
+- Working protocol for uploading / updating Django Framework based backend automation.
+- Working protocol for reusing Django Framework based backend automation.
+- Working custom jennie automation for UBUNTU server ( setup and deploy ) 
 
-Firebase is a great tool for automating backend services though due to multiple steps involved it becomes hard to integrate firebase in Angular Project. 
 
-The command adds Handler for Firebase that makes integrations and firebase usage easy to use inside project
-
-```shell script
-jennie angular add firebase
-```
- 
-*One need to be present inside angular project to perform the task.*
-
-### -  Add Table View For API
-
-Add a page with table that represent value from API, also there are option to add, modify and delete value.
-
-```shell script
-jennie angular add table-view path/to/table.json
-```
- 
-*One need to be present inside angular project to perform the task.*
-      
-## Django ( Backend )
-
-### - Setup Project
-
-The command and configure application to Django Project with proper directory structure and with custom libraries.
-
-Custom libraries include
-
-- LogginMixin : Simple Django Logger with option to log to ElasticSearch
-- Authentication : Token Authentication class with permission class.
-- CustomExceptionHandler : for handling real time exceptions
-- CustomResponse : The helps to maintain proper structure standard for API response. 
-
-```shell script
-jennie django setup project
-```
-
-### -  Create User API
-
-The task automates creation of 
-
-- Login API
-- Signup API
-- Reset Password API
-
-```shell script
-jennie django add user-apis path/to/user-table.json
-```
-
-### -  Create Simple API
-
-The task automates create Api for a table provided. The api contain all 4 methods. GET, POST, PUT, DELETE.
-
-Create Model, Serializer, Controller, and View for the API.
- 
-```shell script
-jennie django add simple-apis path/to/user-table.json
-```
-
-## Angular Bootstrap UI Gallery
-
-`Angular component library`: Angular Library that can be used inside any angular project as a component, these component can be a small module or a complete page as well.
+### Angular UI module library.
 
 *A list of UI galleries can be found at [angular.uigallery.ask-jennie.com](https://angular.uigallery.ask-jennie.com/)*
 
-### -  Adding Angular Based UI Component to your project.
+##### Create Angular UI module library component.
+The command creates an angular component and add jennie configration to it by taking some information from user. This saves the time for creating while uploading a new component to jennie library. 
 
-```shell
-jennie angular add uilibname
 ```
-        
-replace `uilibname` with desire gallery        
-        
-**the command will create a component with the name of library, add it to project, later the library can be used using `<app-uilibname></app-uilibname>` anywhere inside projects**
+$ jennie angular ui-lib create
+```
 
-### -  Uploading Angular Based UI Component
+**Output**
+```
+Name for the UI library component
+>> simplebootstraploginpage
 
-**Create a json config file inside the component folder, the json config file will contain**
+Title for the library component
+>>  Simple Login page using Bootstrap Form.
 
-Name | Description
---- | --- |
-type | `bootstrap-ui-gallery` / `ui-gallery`
-name | `nameofcomponent`, make sure the name should not contain only alpha numaric characters.
-title | Title for the component, the title will be displayed on ui gallery website.
-description | Short description for the component, the description will be displayed on ui gallery website.
-image_file | File path for image, required. Make you component live take a screenshot that's good for an image.
+Short Description for the library component
+>>  Simple bootstrap login page design. The theme uses basic Bootstrap forms.  
+```
 
-So the json file would look like.
-
-**json.conf.json**
+component with **jennie.conf.json** file is created.
 ```json
 {
-    "type": "bootstrap-ui-gallery",
-    "name": "navbardark",
-    "title": "Simple Bootstrap Registration Page",
-    "description": "Some information about the library",
-    "parameter": [{
-        "parameter_name": "Name of parameter",
-        "parameter_type": "string/array",
-        "parameter_description": "Tell us about the parameter"
-    }],
-    "image_file": "/Users/saurabhpandey/Desktop/ASKJennie/uigallery/src/assets/navbar-dark.png",
-    "tag": "Navbar"
+    "type": "angular-ui-lib",
+    "name": "simplebootstraploginpage",
+    "title": "Simple Login page using Bootstrap Form.",
+    "description": "Simple bootstrap login page design. The theme uses basic Bootstrap forms.",
+    "tag": "[Keyword for the library]",
+    "image_file": "[IMAGE_COMPLETE_FILE_PATH]",
+    "sample_usage_component": "[COMPONENT_NAME]"
 }
 ```
 
-go inside the component and run the command.
+**jennie.conf.json** explained
 
-```shell
-jennie angular upload ui-lib
+key | value |
+--- | --- |
+type | Defines the type of automation, for angular ui library use angular-ui-lib |
+name | Defines the name for the component and should all small with no special characters. the name should be unique within Jennie Angular UI Gallery. |
+title | Small title for the component. Same title is displayed at [uigallery.angular](https://uigallery.angular.ask-jennie.com)  |
+description | Short description about the ui component the component, the description will be displayed at [uigallery.angular](https://uigallery.angular.ask-jennie.com) |
+image_file | image file path showing gallery after being implemented on a component. make sure the path is absolute path. |
+sample_usage_component | Component name that contains sample usage for the ui library component.
+
+##### Upload Angular UI module library component.
+Make sure the command is execute from a ui-component-directory. to create a ui component directory use **Create Angular UI module library component**
+```
+$ jennie angular ui-lib upload
+```
+once uploaded successfully, Component can be found at [uigallery.angular](https://uigallery.angular.ask-jennie.com)
+
+##### Update Angular UI module library component.
+Make sure the command is execute from a ui-component-directory. to create a ui component directory use **Create Angular UI module library component**
+```
+$ jennie angular ui-lib upload
+```
+The command updates already created angular ui component. the component must exits at [uigallery.angular](https://uigallery.angular.ask-jennie.com)
+
+##### Use Angular UI module library component.
+Add a UI component available for public use to your angular project.
+```
+$ jennie angular ui-lib <ui-gallery-name>
 ```
 
-### -  Updating Angular Based UI Component
+the command will create a component with the name of library, add it to project, later the library can be used using 
+`<app-uilibname></app-uilibname>` anywhere inside projects
 
-The command will update the angular component library on ASK Jennie Server.
+Library with documentation can be found at [uigallery.angular](https://uigallery.angular.ask-jennie.com)
 
-```shell
-jennie angular update ui-lib
-```
 
-Make sure jennie conf file exits in project 
+### Angular Framework Automations.
 
-## Flutter ( Mobile Application, Coming Soon.... ) 
+##### Create Angular Framework Automations.
+
+##### Upload Angular Framework Automations.
+
+##### Update Angular Framework Automations.
+
+##### Use Angular Framework Automations.
+
+### Django Framework based backend automation.
+
+##### Create Angular Framework Automations.
+
+##### Upload Angular Framework Automations.
+
+##### Update Angular Framework Automations.
+
+##### Use Angular Framework Automations.
+
+### Automation for UBUNTU server ( setup and deploy )

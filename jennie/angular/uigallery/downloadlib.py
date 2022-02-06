@@ -15,26 +15,28 @@ class DownloadLib():
 
     @property
     def download_ui_component(self):
+        if not check_if_angular_project(self.curr_directory):
+            print("Not an angular project")
+            return False
+
         url = DOWNLOAD_LIB_INFO + "?app_name=" + self.app_name
         lib_info_resp = requests.get(url, headers={"token": self.token})
-        jsonConf = create_angular_module_info(lib_info_resp.json()["payload"])
+        jsonConf = get_data_for_angular_ui_module(lib_info_resp.json()["payload"])
         app_name = jsonConf["app_name"]
-        if check_if_angular_project(self.curr_directory):
-            os.system("ng g c uigallery/{} --skip-tests=true".format(app_name))
-            open("src/app/uigallery/{0}/{0}.component.css".format(app_name), "w").write(jsonConf["css_file_data"])
-            open("src/app/uigallery/{0}/{0}.component.html".format(app_name), "w").write(jsonConf["html_file_data"])
-            open("src/app/uigallery/{0}/{0}.component.ts".format(app_name), "w").write(jsonConf["ts_file_data"])
-            scripts_attachment_html = ""
-            for script in jsonConf["scripts"]:
-                open("src/assets/{}".format(script), "w").write(jsonConf["scripts"][script])
-                scripts_attachment_html += "<script src='assets/{}'></script>\n".format(script)
-            index_html = open("src/index.html", "r").read()
-            index_html = index_html.replace("</body>", scripts_attachment_html + "</body>")
-            open("src/index.html", "w").write(index_html)
-            return True
-        else:
-            print ("Not an angular project")
-        return False
+
+        os.system("ng g c uigallery/{} --skip-tests=true".format(app_name))
+        open("src/app/uigallery/{0}/{0}.component.css".format(app_name), "w").write(jsonConf["css_file_data"])
+        open("src/app/uigallery/{0}/{0}.component.html".format(app_name), "w").write(jsonConf["html_file_data"])
+        open("src/app/uigallery/{0}/{0}.component.ts".format(app_name), "w").write(jsonConf["ts_file_data"])
+        scripts_attachment_html = ""
+        for script in jsonConf["scripts"]:
+            open("src/assets/{}".format(script), "w").write(jsonConf["scripts"][script])
+            scripts_attachment_html += "<script src='assets/{}'></script>\n".format(script)
+        index_html = open("src/index.html", "r").read()
+        index_html = index_html.replace("</body>", scripts_attachment_html + "</body>")
+        open("src/index.html", "w").write(index_html)
+
+        return True
 
 if __name__ == '__main__':
     status = DownloadLib("navbarlight").download_ui_component
