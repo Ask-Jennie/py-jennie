@@ -67,15 +67,28 @@ from jennie.angular import *
 
 __version__ = '0.0.1'
 __author__ = 'ASK Jennie Developer <saurabh@ask-jennie.com>'
+__description__ = 'The package targets protocol for uploading and reusing task and libraries'
 
 def execute():
-    print (sys.argv[0] , sys.argv[1] , sys.argv[2] , sys.argv[3] )
-    if sys.argv[1] == "logout":
-        status = Setup().logout
-        if (status):
-            print ("Logged out successfully")
-        else:
-            print ("Unable to logout, try again")
+
+    if sys.argv[1] == "--version":
+        print ("Version :",__version__)
+        print ("Author :",__author__)
+
+        print(__description__ + "\n")
+        user_info = Setup().is_user_logged_in()
+        if (user_info == None):
+            print ("Not logged in, To use the software try login using jennie setup [registered_email]")
+            return
+        print("User Name :", user_info["fullname"])
+        print("User Email :", user_info["email"])
+
+        print ("\nVersion Info : ")
+        print ("Stable Version :", user_info["stable"])
+        print ("Latest Version :", user_info["latest"])
+
+    elif sys.argv[1] == "logout":
+        Setup().logout()
 
     elif sys.argv[1] == "setup":
         Setup().setup(sys.argv[2])
@@ -86,13 +99,14 @@ def execute():
     elif sys.argv[1] == "angular" and sys.argv[2] == "update" and sys.argv[3] == "ui-lib":
         update_library()
 
-    elif sys.argv[1] == "angular" and sys.argv[2] == "install" and sys.argv[3] == "bootstrap":
-        install_bootstrap()
+    # elif sys.argv[1] == "angular" and sys.argv[2] == "install" and sys.argv[3] == "bootstrap":
+    #     install_bootstrap()
 
-    elif sys.argv[1] == "angular" and sys.argv[2] == "ui-lib":
-        print ("Add Angular Library")
-        install_library(sys.argv[3])
+    elif sys.argv[1] == "angular" and sys.argv[2] == "download" and sys.argv[3] == "ui-lib":
+        install_angular_ui_lib(sys.argv[4])
 
+    elif sys.argv[1] == "angular" and sys.argv[2] == "delete" and sys.argv[3] == "ui-lib":
+        delete_angular_ui_lib()
     else:
         command = ' '.join(sys.argv)
         print ("Invalid command: {}, check jennie command list".format(command))

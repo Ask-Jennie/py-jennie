@@ -1,11 +1,13 @@
 import setuptools
 
-with open("READMEOLD.md", "r") as fh:
+__description__ = 'The package targets protocol for uploading and reusing task and libraries'
+
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
      name='py-jennie',
-     version='0.0.1',
+     version='0.0.2',
      author="Saurabh Pandey",
      py_modules=["jennie"],
      install_requires=['requests'],
@@ -15,7 +17,7 @@ setuptools.setup(
         ],
      },
      author_email="saurabh@ask-jennie.com",
-     description="The package targets to automate development task using single line command, The package include task with UI gallery to automate development of small to medium project. The package is a part of ASK Jennie Complete Product.",
+     description=__description__,
      long_description=long_description,
      long_description_content_type="text/markdown",
      url="https://github.com/Ask-Jennie/py-jennie",

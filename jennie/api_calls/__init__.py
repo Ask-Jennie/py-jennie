@@ -28,8 +28,25 @@ class APICalls():
             headers = {"Content-type": "application/json"}
 
         response = requests.get(url, headers=headers)
-        print("Make API Call", response.status_code)
         return response.json()
+
+    def get_text(self, url, headers=None, params=None):
+        """
+        Make a get api call, if params are present add params to url,
+        if headers are present add headers to requests
+        :param url: Request URL
+        :param headers: Request Headers ( optional )
+        :param params: Request Params ( optional )
+        :return: API Call JSON Response.
+        """
+        if params != None:
+            url = self.recreate_url(url, params)
+
+        if headers == None:
+            headers = {"Content-type": "application/json"}
+
+        response = requests.get(url, headers=headers)
+        return response.text
 
     def post(self, url, headers=None, body=None):
         """
@@ -46,7 +63,6 @@ class APICalls():
             body = {}
 
         response = requests.post(url, headers=headers, json=body)
-        print("Make API Call", response.status_code)
         return response.json()
 
     def put(self, url, headers=None, body=None):
@@ -62,8 +78,7 @@ class APICalls():
 
         if body == None:
             body = {}
-        response = requests.put(url, headers=headers, json=body).json()
-        print("Make API Call", response.status_code)
+        response = requests.put(url, headers=headers, json=body)
         return response.json()
 
     def delete(self, url, headers=None, body=None):
@@ -79,6 +94,5 @@ class APICalls():
 
         if body == None:
             body = {}
-        response = requests.delete(url, headers=headers, json=body).json()
-        print("Make API Call", response.status_code)
+        response = requests.delete(url, headers=headers, json=body)
         return response.json()

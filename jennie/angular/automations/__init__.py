@@ -48,21 +48,21 @@ import os
 from jennie.responses import UNKNOWN_PROJECT_TYPE
 from jennie.angular.helper import check_if_angular_project
 
-class AngularAutomations():
-    def __init__(self):
-
-    def execute_raw_files(self):
-    def execute_shell_command(self):
-    def add_ui_lib(self):
-    def add_angular_automations(self):
-    def add_routing(self):
-    def add_index_script(self):
-    def add_index_css(self):
-    def get_automation_details(self):
-    def add_automation_details(self):
-    def update_automation_details(self):
-    def execute_automation(self, name):
-    def add_automation(self, name):
+# class AngularAutomations():
+#     def __init__(self):
+#
+#     def execute_raw_files(self):
+#     def execute_shell_command(self):
+#     def add_ui_lib(self):
+#     def add_angular_automations(self):
+#     def add_routing(self):
+#     def add_index_script(self):
+#     def add_index_css(self):
+#     def get_automation_details(self):
+#     def add_automation_details(self):
+#     def update_automation_details(self):
+#     def execute_automation(self, name):
+#     def add_automation(self, name):
 
 
 #
@@ -109,7 +109,7 @@ class AngularAutomations():
 #     else:
 #         print (UNKNOWN_PROJECT_TYPE)
 
-def automation():
+# def automation():
 
 # def add_dashboard_module():
 #
