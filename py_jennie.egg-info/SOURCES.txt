@@ -2,7 +2,9 @@ LICENSE.txt
 README.md
 setup.cfg
 setup.py
+ask-jennie/__init__.py
 jennie/__init__.py
+jennie/constants.py
 jennie/responses.py
 jennie/angular/__init__.py
 jennie/angular/helper.py
@@ -11,7 +13,13 @@ jennie/angular/uigallery/__init__.py
 jennie/api_calls/__init__.py
 jennie/django/__init__.py
 jennie/filehandler/__init__.py
+jennie/jennie_tools/__init__.py
+jennie/jennie_tools/checks.py
+jennie/jennie_tools/filehandler.py
+jennie/jennie_tools/userinput.py
 jennie/setup/__init__.py
+jennie/ubuntu/__init__.py
+jennie/ubuntu/config_builder.py
 jennie/userinput/__init__.py
 py_jennie.egg-info/PKG-INFO
 py_jennie.egg-info/SOURCES.txt

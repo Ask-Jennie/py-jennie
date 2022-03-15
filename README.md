@@ -1,11 +1,79 @@
 # Jennie
-The package targets protocol for uploading and reusing task and libraries. To Use the package one must be logged in. Follow setup process.
+The package targets protocol for uploading and reusing task and libraries support for different platforms and libraries. To Use the package one must be logged in. Follow setup process.
+
+# Provided Automations
 
 ## Setup
 
 Setup include login and logout, login using
 - `For Login`: `jennie setup [register-email-address]`
 - `For Logout`: `jennie logout`
+
+## Angular UI Module
+
+### Download
+
+```
+jennie angular download ui-lib <lib-name>
+```
+
+### Upload
+
+```
+jennie angular upload ui-lib
+```
+
+### Update
+
+```
+jennie angular update ui-lib
+```
+
+### Delete
+
+```
+jennie angular delete ui-lib
+```
+
+## Angular Automation Module
+
+### Download
+
+```
+jennie angular download automation <lib-name>
+```
+
+### Upload
+
+```
+jennie angular upload automation
+```
+
+### Update
+
+```
+jennie angular update automation
+```
+
+### Delete
+
+```
+jennie angular delete automation
+```
+
+## Ubuntu Automations
+
+### Install LEMP 
+
+```
+jennie ubuntu install lemp
+```
+
+### Install phpmyadmin
+
+```
+jennie ubuntu install phpmyadmin
+```
 
 
 ### Angular UI Module Protocol

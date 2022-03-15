@@ -64,6 +64,7 @@ Make sure you are inside angular project while executing the command
 import sys
 from jennie.setup import Setup
 from jennie.angular import *
+from jennie.ubuntu import *
 
 __version__ = '0.0.1'
 __author__ = 'ASK Jennie Developer <saurabh@ask-jennie.com>'
@@ -80,17 +81,29 @@ def execute():
     elif sys.argv[1] == "setup":
         Setup().setup(sys.argv[2])
 
+    # Ubuntu Automations starts here
+
+    elif sys.argv[1] == "ubuntu" and sys.argv[2] == "install" and sys.argv[3] == "lemp":
+        Ubuntu().install_lemp()
+
+    elif sys.argv[1] == "ubuntu" and sys.argv[2] == "install" and sys.argv[3] == "phpmyadmin":
+        Ubuntu().install_phpmyadmin(sys.argv[4])
+
+    # Angular UI Lib starts here
+
     elif sys.argv[1] == "angular" and sys.argv[2] == "upload" and sys.argv[3] == "ui-lib":
         upload_library()
 
     elif sys.argv[1] == "angular" and sys.argv[2] == "update" and sys.argv[3] == "ui-lib":
         update_library()
 
-    elif sys.argv[1] == "angular" and sys.argv[2] == "ui-lib":
-        install_angular_ui_lib(sys.argv[3])
+    elif sys.argv[1] == "angular" and sys.argv[2] == "download" and sys.argv[3] == "ui-lib":
+        install_angular_ui_lib(sys.argv[4])
 
     elif sys.argv[1] == "angular" and sys.argv[2] == "delete" and sys.argv[3] == "ui-lib":
         delete_angular_ui_lib(sys.argv[4])
+
+    # Angular Automations starts here
 
     elif sys.argv[1] == "angular" and sys.argv[2] == "upload" and sys.argv[3] == "automation":
         upload_angular_automations()
@@ -101,9 +114,8 @@ def execute():
     elif sys.argv[1] == "angular" and sys.argv[2] == "delete" and sys.argv[3] == "automation":
         delete_angular_automations(sys.argv[4])
 
-    elif sys.argv[1] == "angular" and sys.argv[2] == "automation":
+    elif sys.argv[1] == "angular" and sys.argv[2] == "download" and sys.argv[3] == "automation":
         install_angular_automation(sys.argv[4])
-
     else:
         command = ' '.join(sys.argv)
         print ("Invalid command: {}, check jennie command list".format(command))
