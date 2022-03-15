@@ -72,20 +72,7 @@ __description__ = 'The package targets protocol for uploading and reusing task a
 def execute():
 
     if sys.argv[1] == "--version":
-        print ("Version :",__version__)
-        print ("Author :",__author__)
-
-        print(__description__ + "\n")
-        user_info = Setup().is_user_logged_in()
-        if (user_info == None):
-            print ("Not logged in, To use the software try login using jennie setup [registered_email]")
-            return
-        print("User Name :", user_info["fullname"])
-        print("User Email :", user_info["email"])
-
-        print ("\nVersion Info : ")
-        print ("Stable Version :", user_info["stable"])
-        print ("Latest Version :", user_info["latest"])
+        Setup().show_version(__version__, __author__, __description__)
 
     elif sys.argv[1] == "logout":
         Setup().logout()
@@ -99,14 +86,24 @@ def execute():
     elif sys.argv[1] == "angular" and sys.argv[2] == "update" and sys.argv[3] == "ui-lib":
         update_library()
 
-    # elif sys.argv[1] == "angular" and sys.argv[2] == "install" and sys.argv[3] == "bootstrap":
-    #     install_bootstrap()
-
-    elif sys.argv[1] == "angular" and sys.argv[2] == "download" and sys.argv[3] == "ui-lib":
-        install_angular_ui_lib(sys.argv[4])
+    elif sys.argv[1] == "angular" and sys.argv[2] == "ui-lib":
+        install_angular_ui_lib(sys.argv[3])
 
     elif sys.argv[1] == "angular" and sys.argv[2] == "delete" and sys.argv[3] == "ui-lib":
-        delete_angular_ui_lib()
+        delete_angular_ui_lib(sys.argv[4])
+
+    elif sys.argv[1] == "angular" and sys.argv[2] == "upload" and sys.argv[3] == "automation":
+        upload_angular_automations()
+
+    elif sys.argv[1] == "angular" and sys.argv[2] == "update" and sys.argv[3] == "automation":
+        update_angular_automations()
+
+    elif sys.argv[1] == "angular" and sys.argv[2] == "delete" and sys.argv[3] == "automation":
+        delete_angular_automations(sys.argv[4])
+
+    elif sys.argv[1] == "angular" and sys.argv[2] == "automation":
+        install_angular_automation(sys.argv[4])
+
     else:
         command = ' '.join(sys.argv)
         print ("Invalid command: {}, check jennie command list".format(command))

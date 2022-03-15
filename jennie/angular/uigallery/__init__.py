@@ -1,15 +1,6 @@
-"""
-Angular UI Component Gallery Protocol
-    The protocol works only for Logged In User. To request registration contact author saurabh@ask-jennie.com
-    In general the protocol provides features as below
-         - Uploading Angular Component as Angular UI gallery Module.
-         - Reusing Uploaded Angular UI Gallery Module inside any angular Project.
-         - Update Angular UI gallery Module uploaded by user itself.
-         - Delete previously uploaded Angular UI gallery Module by user itself.
-"""
 from jennie.setup import Setup
+from jennie.jennie_tools import *
 from jennie.angular.helper import *
-
 
 class AngularUILibrary():
     def __init__(self):
@@ -17,10 +8,12 @@ class AngularUILibrary():
 
     def init_library(self):
         """
-        Checks if User is logged in for the project.
-        add proper output directory path
+        Checks if User is logged in for the project. add proper output
+        directory path. Also create a flag based on if library is present
+        on server or not.
         """
         self.user_info = Setup().is_user_logged_in()
+        self.token = self.user_info["token"]
         self.out = os.getcwd()
         if not self.user_info:
             raise ValueError("User Not logged in.")
@@ -29,8 +22,7 @@ class AngularUILibrary():
             self.out += "/"
 
         self.app_name = self.out.split("/")[-2]
-        self.do_library_exits = does_angular_ui_gallery_exits(self.app_name, self.user_info["token"])
-
+        self.do_library_exits = does_angular_ui_gallery_exits(self.app_name, self.token)
 
     def update_library_module(self):
         """
@@ -45,12 +37,12 @@ class AngularUILibrary():
             return False
 
         check_angular_ui_module_files(self.out)
-        jennie_conf = create_angular_ui_module_conf(self.app_name, self.out, self.user_info["token"])
-        response = APICalls().put(
+        jennie_conf = create_angular_ui_module_conf(self.app_name, self.out, self.token)
+        response = requests.put(
             "https://api.ask-jennie.com/v1/angular/ui-lib/",
-            body=jennie_conf,
+            json=jennie_conf,
             headers={"token": self.user_info["token"]}
-        )
+        ).json()
         return True
 
     def upload_library_module(self):
@@ -67,13 +59,13 @@ class AngularUILibrary():
             print("Library Already Exits")
             return False
 
-        jennie_conf = create_angular_ui_module_conf(self.app_name, self.out, self.user_info["token"])
+        jennie_conf = create_angular_ui_module_conf(self.app_name, self.out, self.token)
 
-        response = APICalls().post(
+        response = requests.post(
             "https://api.ask-jennie.com/v1/angular/ui-lib/",
-            body=jennie_conf,
+            json=jennie_conf,
             headers={"token": self.user_info["token"]}
-        )
+        ).json()
 
         if response["message"] == "Library already exits":
             print ("Library Already Exits")
@@ -97,11 +89,9 @@ class AngularUILibrary():
         if not check_if_angular_project(directory=self.out):
             raise ValueError("Not an angular Project")
 
-        response = APICalls().get(
-            "https://api.ask-jennie.com/v1/angular/ui-lib",
-            params={ "app_name": app_name },
+        response = requests.get("https://api.ask-jennie.com/v1/angular/ui-lib/?app_name=" + app_name,
             headers= { "token": self.user_info["token"] }
-        )
+        ).json()
         resp_json = response["payload"]
 
         if resp_json["type"] == "angular-ui-lib":
@@ -113,11 +103,12 @@ class AngularUILibrary():
 
             print("\nUpdating Code...")
             download_and_update_ui_module_files(resp_json, output_dir)
+
         else:
             raise ValueError("Unknown Angular UI gallery type, ensure using external verified libraries")
 
 
-    def delete_library_module(self):
+    def delete_library_module(self, app_name):
         """
         Check if execution directory is Angular Project
         Get Angular UI Lib Information from API.
@@ -126,15 +117,11 @@ class AngularUILibrary():
         Update Component HTML, CSS, TS File with UI module files.
         If scripts are there add it to index.html
         """
-        check_angular_ui_module_files(self.out)
-        conf = json.loads(open('jennie.conf.json', 'r').read())
-            # json.dump(response["payload"], f, ensure_ascii=False, indent=4)
-
-        response = APICalls().delete(
+        response = requests.delete(
             "https://api.ask-jennie.com/v1/angular/ui-lib/",
-            body={ "app_name": conf["app_name"] },
+            json={ "app_name": app_name },
             headers= { "token": self.user_info["token"] }
-        )
+        ).json()
         if not response["payload"]:
             print (response["message"])
         else:

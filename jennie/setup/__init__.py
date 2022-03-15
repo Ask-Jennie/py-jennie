@@ -18,6 +18,22 @@ class Setup():
     def __init__(self):
         self.state = 0
 
+    def show_version(self, __version__, __author__, __description__):
+        print ("Version :",__version__)
+        print ("Author :",__author__)
+
+        print(__description__ + "\n")
+        user_info = self.is_user_logged_in()
+        if (user_info == None):
+            print ("Not logged in, To use the software try login using jennie setup [registered_email]")
+            return
+        print("User Name :", user_info["fullname"])
+        print("User Email :", user_info["email"])
+
+        print ("\nVersion Info : ")
+        print ("Stable Version :", user_info["stable"])
+        print ("Latest Version :", user_info["latest"])
+
     def is_user_logged_in(self):
         user_saved_info = None
         userinfo = get_user_access_token()
